@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title%></title>
+    <link rel="stylesheet" href="/stylesheets/iconfont.css">
+    <style type="text/css">
+        html{height:100%}
+        a{color: #000;text-decoration: none;}
+        li{list-style: none}  
+        body{height:100%;margin:0px;padding:0px} 
+        #ser{position: absolute; top: 50px;} 
+        #container{height:100%; position: relative; bottom: 0; overflow: hidden} 
+        footer {height:45px; width: 100%; background: #fff; border-top:1px #0f0f0f solid; display:flex; justify-content:space-around; position: absolute; bottom: 0px;} 
+        footer a{line-height: 46px;}
+        .wrap .top{width: 100%;overflow: hidden;}
+        #mypoint{width: 16px;height: 16px; border: 4px #000 solid;border-radius: 50%; position: absolute; bottom: 100px; left: 20px; background: #fff;}
+        #nb{width:250px;height: 70px; display: block; margin: 0 auto; text-align: center; font-size: 28px; margin:30px auto; border: #0af 1px solid;}
+        #btn{background: #0af;border: #aaa 1px solid; color: #fff; display: block;width:150px; height:45px; margin: 0 auto;}
+        .password{width: 100%; font-size: 38px; color: orangered; text-align: center;  margin: 20px 0;}
+    </style>
+</head>
+<body>
+<div class="top">
+    <input type="text" placeholder="输入用车编号" id="nb">
+</div>
+<div class="wrap">
+    <input type="button" value="查找" id="btn">
+</div>
+  
+    <div class="password"></div>
+
+    <footer>
+            <a href="/"><i class="iconfont">&#xe61d;</i>导航</a>
+            <a href="/ticket"><i class="iconfont">&#xe61e;</i>买票</a>
+            <a href="/bike"><i class="iconfont">&#xe62a;</i>用车</a>
+            <a href="/usercenter"><i class="iconfont">&#xe630;</i>我的</a>
+    </footer>
+</body>
+<script src="/javascripts/jquery-2.1.0.js"></script>
+<script src="/javascripts/bike.js"></script>
+</html>

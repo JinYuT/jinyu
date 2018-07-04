@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>买票</title>
+    <link rel="stylesheet" href="/stylesheets/iconfont.css">
+    <style type="text/css">
+        html{height:100%}
+        a{color: #000;text-decoration: none;}
+        li{list-style: none}  
+        body{height:100%;margin:0px;padding:0px} 
+        #ser{position: absolute; top: 50px;} 
+        #container{height:100%; position: relative; bottom: 0; overflow: hidden} 
+        footer {height:45px; width: 100%; background: #fff; border-top:1px #0f0f0f solid; display:flex; justify-content:space-around; position: absolute; bottom: 0px;} 
+        footer a{line-height: 46px;}
+        #mypoint{width: 16px;height: 16px; border: 4px #000 solid;border-radius: 50%; position: absolute; bottom: 100px; left: 20px; background: #fff;}
+        h1{text-align: center;font-size: 24px; width: 100%; display: block; overflow: hidden; height: 50px; border-bottom: 1px #000 solid;}
+        #tic ul{padding: 0;}
+        #tic ul li{width:100%; height: 70px; border-bottom: 5px #eee solid;}
+        .begin{float: left; }
+        .time{float: left; margin: 0 10px; color:blue;}
+        .number{display: flex; justify-content: center; padding-right: 30px;}
+        .end{}
+        .price{float: left; display: flex; justify-content: flex-start; padding-left: 20px; color: orangered;}
+        .mid{display: flex; justify-content: space-around; padding-right: 30px;}
+        .del{ display: block;margin-left:120px; width: 100px; text-align: center;}
+        .top{display: flex; justify-content: center;}
+    </style>
+</head>
+<body>
+     <h1>个人中心</h1>
+     <div class="top">
+         <a href="/login">登录</a>/
+         <a href="/register">注册</a>
+     </div>
+    <div id="tic">
+         
+            <ul>
+                <% info.map(function(tickets){%>
+                    <li>
+                            <div class="number"><%= tickets.number%></div>
+                            <div class="mid">
+                                    <div class="begin"><%= tickets.begin%></div>
+                                    <div class="time"><%= tickets.time%></div>
+                                    
+                                    <div class="end"><%= tickets.end%></div>    
+
+                            </div>
+                                                 
+                            <div class="price">¥<%= tickets.price%></div>
+                            <a href="javascript:;" class="del" tic_id="<%=tickets._id%>">删除</a>                     
+                    </li>
+                    
+                <%})%>
+        
+            </ul>    
+    </div>
+       
+        <footer>
+            <a href="/"><i class="iconfont">&#xe61d;</i>导航</a>
+            <a href="/ticket"><i class="iconfont">&#xe61e;</i>买票</a>
+            <a href="/bike"><i class="iconfont">&#xe62a;</i>用车</a>
+            <a href="/usercenter"><i class="iconfont">&#xe630;</i>我的</a>
+         </footer>
+</body>
+<script src="/javascripts/jquery-2.1.0.js"></script>
+<script src="/javascripts/usercenter.js"></script>
+<script>
+    document.body.parentNode.style.overflow = "hidden";
+</script>
+</html>

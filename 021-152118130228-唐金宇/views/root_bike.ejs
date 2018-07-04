@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   <style>
+         html{height:100%}
+        a{color: #000;text-decoration: none;}
+        li{list-style: none}  
+        h1{text-align: center;font-size: 24px; width: 100%; display: block; overflow: hidden; height: 50px; border-bottom: 1px #000 solid;}
+         ul{padding: 0;}
+         ul li{width:100%; height:40px; border-bottom: 5px #eee solid; padding-top: 20px;}
+        .del{color: #f00; float: right; display: block; margin-right: 20px;}
+        .add{position: fixed;bottom: 0;width: 100%;height: 50px;background: #0af;color: #fff;text-align: center;line-height: 50px;  }
+       .nb{float: left; margin-right: 30px;}
+       .pass{float: left; }
+       
+   </style>
+</head>
+<body>
+    <h1>车票列表</h1>
+        <ul>
+            <% list.map(function(bike){%>
+                <li>
+                   
+                        <div class="nb">编号：<%= bike.number%></div>
+                        <div class="pass">密码：<%= bike.password%></div>                     
+                        <a class="del" bike_id="<%= bike._id%>">删除</a>
+                   
+                </li>
+                
+            <%})%>
+    
+        </ul>
+
+       <a href="/bike_input" class="add">用车添加</a>
+</body>
+<script src="/javascripts/jquery-2.1.0.js"></script>
+<script src="/javascripts/root_bike.js"></script>
+</html>

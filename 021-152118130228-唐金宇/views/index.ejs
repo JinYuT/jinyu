@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <title>交通出行</title>
+    <link rel="stylesheet" href="/stylesheets/iconfont.css">
+		<style type="text/css">
+			html{height:100%}
+			a{color: #000;text-decoration: none;}
+			li{list-style: none}  
+			body{height:100%;margin:0px;padding:0px} 
+			#ser{position: absolute; top: 50px;} 
+			#container{height:100%; position: relative; bottom: 0; overflow: hidden} 
+			footer {height:45px; width: 100%; background: #fff; border-top:1px #0f0f0f solid; display:flex; justify-content:space-around; position: absolute; bottom: 0px;} 
+			footer a{line-height: 46px;}
+			#mypoint{width: 16px;height: 16px; border: 4px #000 solid;border-radius: 50%; position: absolute; bottom: 100px; left: 20px; background: #fff;}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			
+		</div>
+		<div id="mypoint">
+
+		</div>
+
+		<div id="ser">
+			<input type="text" id="begin" >
+			<input type="text" id="end" >
+			<input type="button" value="搜索路线" id="ser_btn">
+		</div>
+	
+		<footer>
+				<a href="/"><i class="iconfont">&#xe61d;</i>导航</a>
+				<a href="/ticket"><i class="iconfont">&#xe61e;</i>买票</a>
+				<a href="/bike"><i class="iconfont">&#xe62a;</i>用车</a>
+				<a href="/usercenter"><i class="iconfont">&#xe630;</i>我的</a>
+		</footer>
+	</body>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Wt6wn2Sx4Fk7WRv07i9X2oC6j3x2CwHo"></script>
+	<script src="/javascripts/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		document.body.parentNode.style.overflow = "hidden";
+		//禁用滚动条
+
+		var map = new BMap.Map("container");          // 创建地图实例  
+		var point = new BMap.Point(116.404,39.915);  // 创建点坐标  
+		map.centerAndZoom(point,15);                 // 初始化地图，设置中心点坐标和地图级别  
+		map.enableScrollWheelZoom(true); 
+		map.enableDragging(); 
+		//地图控件  
+		map.addControl(new BMap.OverviewMapControl());       
+		// map.setCurrentCity("北京"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用  
+		var opts = {offset: new BMap.Size(20,20)}
+		map.addControl(new BMap.MapTypeControl(opts));
+
+		var opts = {offset: new BMap.Size(20,700)}
+		map.addControl(new BMap.ScaleControl(opts));
+		
+		var opts = {offset: new BMap.Size(20,100)}
+		map.addControl(new BMap.NavigationControl(opts));
+
+		//定位
+		//浏览器定位
+		
+		$("#mypoint").click(function(){
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r){
+				if(this.getStatus() == BMAP_STATUS_SUCCESS){
+					var mk = new BMap.Marker(r.point);
+					map.addOverlay(mk);
+					map.panTo(r.point);
+					// alert('您的位置：'+r.point.lng+','+r.point.lat);
+				}
+				else {
+					alert('failed'+this.getStatus());
+				}        
+			});
+			//ip定位
+			// function myFun(result){
+			// 	var cityName = result.name;
+			// 	map.setCenter(cityName);
+			// 	// alert("当前定位城市:"+cityName);
+			// }
+			// var myCity = new BMap.LocalCity();
+			// myCity.get(myFun); 
+		});
+
+		//导航
+
+		//驾车导航
+	
+	$("#ser_btn").click(function(){
+		var b = $("#begin").val();
+		var e = $("#end").val();
+		var driving = new BMap.DrivingRoute(map, {
+			renderOptions: {
+				map: map,
+				panel: "r-result",
+				autoViewport: true
+			}
+		});
+		driving.search(b, e);
+	})
+		
+
+	
+
+	
+		
+	
+	</script>
+</html>
